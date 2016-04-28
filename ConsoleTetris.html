@@ -30,17 +30,6 @@
         GP.perWidth = 25;
         GP.halfW = parseInt(GP.width / 2) - 1;
         GP.String2dArr = [];//二维数组
-        for (i = 0; i < GP.height; i++) {
-            GP.String2dArr[i] = new Array(GP.width);
-            for (j = 0; j < GP.String2dArr[i].length; j++) {
-                GP.String2dArr[i][j] = '□';
-            }
-        }
-
-
-//        '□'
-//        '■'
-
 
         //大方块的字典数据
         GameParas.OstDictionary = {
@@ -101,7 +90,7 @@
         }
         GameHelper.GetFullLines = function () {
             var result = {};//key 代表 y值   value代表个数
-            var retArr = [];
+            var retArr = []; //哪几行已满 数组
             for (var i = 0; i < gameBoard.stoppedArr.length; i++) {
                 if (gameBoard.stoppedArr[i].y in result) {
                     result[gameBoard.stoppedArr[i].y]++;
@@ -368,15 +357,6 @@
                     this.SmallBlocksArr[i].y += downNum;
                 }
             },
-
-
-//            Render: function () {
-//                var arr = this.SmallBlocksArr;
-//                for (var i = 0; i < 4; i++) {
-//                    ctx.fillStyle = arr[i].color;
-//                    ctx.fillRect(arr[i].x * GameParas.perWidth, arr[i].y * GameParas.perWidth, GameParas.perWidth, GameParas.perWidth);
-//                }
-//            },
         }
 
 //
@@ -434,12 +414,6 @@
                 GameHelper.Eraser();
             },
 
-//            Render: function () {
-//                for (var i = 0; i < this.stoppedArr.length; i++) {
-//                    ctx.fillStyle = this.stoppedArr[i].color;
-//                    ctx.fillRect(this.stoppedArr[i].x * GameParas.perWidth, this.stoppedArr[i].y * GameParas.perWidth, GameParas.perWidth, GameParas.perWidth);
-//                }
-//            }
         }
 
 
@@ -476,11 +450,6 @@
                     var rowNum = (i.toString().length == 1) ? ('0' + i) : i;
                     console.log(rowNum.toString() + ' ' + GP.String2dArr[i].join(' '))
                 }
-
-//                console.log(gameBoard.edgeArr.toString())
-//                ost.Render();
-//                ostNext.Render();
-//                gameBoard.Render();
             },
             secLoop: function () {//自动下落函数 用来调节难度
                 if (!GameHelper.IfTouching(ost, 40)) { //没碰到下降
@@ -533,8 +502,6 @@
         game.secRun();
     }
 </script>
-
-
 </body>
 </html>
 
